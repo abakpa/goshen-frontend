@@ -31,7 +31,7 @@ export default function CategoryFormPage() {
         <TextField label="Category name" error={errors.name?.message} {...register('name', { required: 'Category name is required' })} />
         <TextField label="Description" as="textarea" {...register('description')} />
       </section>
-      <div className="sticky bottom-16 flex justify-end gap-3 rounded-lg bg-cream/95 py-3 backdrop-blur lg:bottom-0">
+      <div className="relative z-10 flex justify-end gap-3 rounded-lg bg-cream/95 py-3 backdrop-blur lg:sticky lg:bottom-0">
         <button type="button" onClick={() => navigate('/products')} className="min-h-11 rounded-md border border-stone-200 bg-white px-4 font-semibold focus-ring">Cancel</button>
         <button disabled={isSubmitting} className="min-h-11 rounded-md bg-burgundy-600 px-5 font-bold text-white focus-ring disabled:opacity-60">
           {isSubmitting ? 'Saving...' : 'Save category'}

@@ -5,6 +5,7 @@ import { api } from '../../api/resources.js';
 import ErrorState from '../../components/common/ErrorState.jsx';
 import SkeletonBlock from '../../components/common/SkeletonBlock.jsx';
 import FormAlert from '../../components/forms/FormAlert.jsx';
+import SelectField from '../../components/forms/SelectField.jsx';
 import TextField from '../../components/forms/TextField.jsx';
 import { useAsyncData } from '../../hooks/useAsyncData.js';
 
@@ -75,13 +76,10 @@ export default function RoleFormPage() {
       <section className="grid gap-4 rounded-lg bg-white p-4 shadow-soft sm:grid-cols-2">
         <TextField label="Role name" error={errors.name?.message} {...register('name', { required: 'Role name is required' })} />
         <TextField label="Description" {...register('description')} />
-        <label className="block text-sm font-semibold">
-          Status
-          <select className="mt-2 min-h-12 w-full rounded-md border border-stone-200 bg-white px-3 font-normal outline-none focus:border-burgundy-500" {...register('status')}>
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
-          </select>
-        </label>
+        <SelectField label="Status" {...register('status')}>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </SelectField>
       </section>
       <section className="rounded-lg bg-white p-4 shadow-soft">
         <div className="flex items-center justify-between gap-3">
@@ -104,7 +102,7 @@ export default function RoleFormPage() {
           ))}
         </div>
       </section>
-      <div className="sticky bottom-16 flex justify-end gap-3 rounded-lg bg-cream/95 py-3 backdrop-blur lg:bottom-0">
+      <div className="relative z-10 flex justify-end gap-3 rounded-lg bg-cream/95 py-3 backdrop-blur lg:sticky lg:bottom-0">
         <button type="button" onClick={() => navigate('/staff')} className="min-h-11 rounded-md border border-stone-200 bg-white px-4 font-semibold focus-ring">Cancel</button>
         <button disabled={isSubmitting} className="min-h-11 rounded-md bg-burgundy-600 px-5 font-bold text-white focus-ring disabled:opacity-60">
           {isSubmitting ? 'Saving...' : isEditing ? 'Update role' : 'Create role'}

@@ -50,7 +50,7 @@ export default function ShiftOpenPage() {
         <TextField label="Opening cash" type="number" min="0" step="0.01" error={errors.openingCash?.message} {...register('openingCash', { required: 'Opening cash is required' })} />
         <TextField label="Notes" as="textarea" className="sm:col-span-2" {...register('notes')} />
       </section>
-      <div className="sticky bottom-16 flex justify-end gap-3 rounded-lg bg-cream/95 py-3 backdrop-blur lg:bottom-0">
+      <div className="relative z-10 flex justify-end gap-3 rounded-lg bg-cream/95 py-3 backdrop-blur lg:sticky lg:bottom-0">
         <button type="button" onClick={() => navigate('/sales/shifts')} className="min-h-11 rounded-md border border-stone-200 bg-white px-4 font-semibold focus-ring">Cancel</button>
         <button disabled={isSubmitting} className="min-h-11 rounded-md bg-burgundy-600 px-5 font-bold text-white focus-ring disabled:opacity-60">
           {isSubmitting ? 'Opening...' : 'Open shift'}

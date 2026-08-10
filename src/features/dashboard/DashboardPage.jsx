@@ -4,6 +4,7 @@ import { api } from '../../api/resources.js';
 import ErrorState from '../../components/common/ErrorState.jsx';
 import SkeletonBlock from '../../components/common/SkeletonBlock.jsx';
 import StatCard from '../../components/common/StatCard.jsx';
+import SelectField from '../../components/forms/SelectField.jsx';
 import { useAsyncData } from '../../hooks/useAsyncData.js';
 
 const salesTrend = [
@@ -42,11 +43,11 @@ export default function DashboardPage() {
           <h1 className="text-2xl font-bold tracking-normal sm:text-3xl">Goshen Collection overview</h1>
         </div>
         <div className="grid grid-cols-2 gap-2 sm:flex">
-          <select className="min-h-11 rounded-md border border-stone-200 bg-white px-3 text-sm focus-ring">
+          <SelectField label="Store" className="text-xs">
             <option>All stores</option>
             <option>Men's Clothing Store</option>
             <option>Kids' Clothing Store</option>
-          </select>
+          </SelectField>
           <input className="min-h-11 rounded-md border border-stone-200 bg-white px-3 text-sm focus-ring" type="date" />
         </div>
       </div>

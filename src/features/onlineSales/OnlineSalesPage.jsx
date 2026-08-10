@@ -2,6 +2,7 @@ import ModulePage from '../../components/common/ModulePage.jsx';
 import { api } from '../../api/resources.js';
 import ErrorState from '../../components/common/ErrorState.jsx';
 import FormAlert from '../../components/forms/FormAlert.jsx';
+import SelectField from '../../components/forms/SelectField.jsx';
 import SkeletonBlock from '../../components/common/SkeletonBlock.jsx';
 import StatusBadge from '../../components/common/StatusBadge.jsx';
 import ResponsiveTable from '../../components/tables/ResponsiveTable.jsx';
@@ -86,17 +87,18 @@ export default function OnlineSalesPage() {
       key: 'paymentStatus',
       header: 'Payment',
       render: (row) => (
-        <select
+        <SelectField
+          label="Payment"
           value={row.paymentStatus}
           disabled={updatingOrderId === row._id}
           onChange={(event) => updatePaymentStatus(row, event.target.value)}
-          className="min-h-10 rounded-md border border-stone-200 bg-white px-2 text-sm font-semibold outline-none focus:border-burgundy-500 disabled:opacity-60"
+          className="min-w-40 text-xs"
         >
           <option value="unpaid">unpaid</option>
           <option value="partially-paid">partially paid</option>
           <option value="paid">paid</option>
           <option value="refunded">refunded</option>
-        </select>
+        </SelectField>
       )
     },
     { key: 'outstandingBalance', header: 'Balance', render: (row) => formatCurrency(row.outstandingBalance || 0) },
@@ -104,16 +106,17 @@ export default function OnlineSalesPage() {
       key: 'deliveryStatus',
       header: 'Delivery',
       render: (row) => (
-        <select
+        <SelectField
+          label="Delivery"
           value={row.deliveryStatus}
           disabled={updatingOrderId === row._id}
           onChange={(event) => updateDeliveryStatus(row, event.target.value)}
-          className="min-h-10 rounded-md border border-stone-200 bg-white px-2 text-sm font-semibold outline-none focus:border-burgundy-500 disabled:opacity-60"
+          className="min-w-48 text-xs"
         >
           {deliveryStatuses.map((deliveryStatus) => (
             <option key={deliveryStatus} value={deliveryStatus}>{deliveryStatus.replaceAll('-', ' ')}</option>
           ))}
-        </select>
+        </SelectField>
       )
     }
   ];

@@ -368,7 +368,7 @@ export default function PointOfSalePage() {
             </article>
           ))}
         </div>
-        <div className="sticky bottom-16 border-t border-stone-100 bg-white p-4 lg:bottom-0">
+        <div className="relative z-10 border-t border-stone-100 bg-white p-4 lg:sticky lg:bottom-0">
           <div className="grid gap-3">
             <SelectField label="Payment method" value={paymentMethod} onChange={(event) => setPaymentMethod(event.target.value)}>
               <option value="cash">Cash</option>
