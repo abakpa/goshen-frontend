@@ -1,12 +1,14 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FaEnvelope, FaLock } from 'react-icons/fa6';
+import { FaEnvelope, FaEye, FaEyeSlash, FaLock } from 'react-icons/fa6';
 import { login } from './authSlice.js';
 import Logo from '../../components/common/Logo.jsx';
 import { getDefaultRoute } from '../../utils/permissions.js';
 
 export default function LoginPage() {
+  const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -55,7 +57,16 @@ export default function LoginPage() {
           <label className="mt-4 block text-sm font-semibold" htmlFor="password">Password</label>
           <div className="mt-2 flex min-h-12 items-center gap-3 rounded-md border border-stone-200 px-3 focus-within:border-burgundy-500">
             <FaLock className="text-stone-400" />
-            <input id="password" type="password" className="w-full outline-none" {...register('password', { required: true })} />
+            <input id="password" type={showPassword ? 'text' : 'password'} className="min-w-0 w-full outline-none" {...register('password', { required: true })} />
+            <button
+              type="button"
+              className="focus-ring shrink-0 rounded p-2 text-stone-400 hover:text-burgundy-600"
+              aria-label={showPassword ? 'Hide password' : 'Show password'}
+              aria-controls="password"
+              onClick={() => setShowPassword((visible) => !visible)}
+            >
+              {showPassword ? <FaEyeSlash aria-hidden="true" /> : <FaEye aria-hidden="true" />}
+            </button>
           </div>
           <div className="mt-4 flex items-center justify-between gap-4 text-sm">
             <label className="flex items-center gap-2 text-stone-600">
